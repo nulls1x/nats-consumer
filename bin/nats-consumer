@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require File.join(Dir.pwd, 'config/environment')
+
+$stdout.sync = true
+
+SHUTDOWN_TIMEOUT = 25
+
+%w[INT TERM].each { Signal.trap(it) { NatsConsumer.stop } }
+
+NatsConsumer.run
+
+deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + SHUTDOWN_TIMEOUT
+until NatsConsumer.threads_alive.zero?
+  break if Process.clock_gettime(Process::CLOCK_MONOTONIC) > deadline
+
+  sleep 0.5
+end

@@ -35,5 +35,14 @@ module NatsConsumer
     def config
       @config ||= Configuration.new
     end
+
+    def run
+      @pool = ThreadPool.new(proc { NATS.connect(servers: config.servers) })
+      @pool.start
+      @pool.join
+    end
+
+    def stop = @pool&.stop
+    def threads_alive = @pool&.threads_alive || 0
   end
 end
