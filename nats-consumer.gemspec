@@ -16,6 +16,9 @@ Gem::Specification.new do |spec|
   spec.executables = ['nats-consumer']
   spec.require_paths = ['lib']
 
+  spec.add_development_dependency 'rspec', '~> 3.12'
+  spec.add_development_dependency 'timecop', '~> 0.9'
+
   spec.add_dependency 'dry-initializer', '~> 3.1'
   spec.add_dependency 'dry-struct', '~> 1.6'
   spec.add_dependency 'dry-types', '~> 1.7'
