@@ -27,7 +27,7 @@ module NatsConsumer
     def done(consumer) = @mutex.synchronize { entries[consumer].release! }
     def backoff(consumer) = @mutex.synchronize { entries[consumer].backoff! }
 
-    def status = @mutex.synchronize { consumers.map { consumer_status(it) } }
+    def status = @mutex.synchronize { consumers.map { consumer_status(_1) } }
 
     private
 

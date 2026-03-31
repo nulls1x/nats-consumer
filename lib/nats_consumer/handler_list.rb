@@ -18,6 +18,6 @@ module NatsConsumer
 
     attr_reader :handlers
 
-    def pass_to_handlers(msg) = handlers[msg.type].each { it.new.(msg) }
+    def pass_to_handlers(msg) = handlers[msg.type].each { _1.new.(msg) }
   end
 end

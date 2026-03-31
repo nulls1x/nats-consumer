@@ -21,7 +21,7 @@ module NatsConsumer
       prepare_consumers(connection_builder.())
       pool_size.times { spawn_worker }
       spawn_heartbeat
-      logger.info('Pool started', pool_size:, consumers: queue.status.map { it[:name] })
+      logger.info('Pool started', pool_size:, consumers: queue.status.map { _1[:name] })
     end
 
     def stop = @done = true
