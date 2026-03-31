@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Events
+module NatsConsumer
   class Logger
     def initialize(logger = ::Logger.new($stdout))
       @logger = logger

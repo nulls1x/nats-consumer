@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-module Events
+module NatsConsumer
   class ThreadPool
     DEFAULT_POOL_SIZE = 10
 
     attr_reader :pool_size
 
-    def initialize(connection_builder, pool_size: nil, logger: Events::Logger.new)
+    def initialize(connection_builder, pool_size: nil, logger: NatsConsumer::Logger.new)
       @connection_builder = connection_builder
       @logger = logger
       @pool_size = pool_size || DEFAULT_POOL_SIZE

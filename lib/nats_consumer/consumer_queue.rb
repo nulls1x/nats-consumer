@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Events
+module NatsConsumer
   class ConsumerQueue
     def initialize
       @entries = {}

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Events
+module NatsConsumer
   class Message < Dry::Struct
     attribute? :specversion, Types::String.default('1.0')
     attribute?(:id, Types::String.default { SecureRandom.uuid })

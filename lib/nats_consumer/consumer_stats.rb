@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Events
+module NatsConsumer
   class ConsumerStats
     RECENT_SUBJECTS_LIMIT = 10
 

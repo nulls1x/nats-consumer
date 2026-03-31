@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Events
+module NatsConsumer
   class BaseConsumer
     RECONNECTION_PERIOD = 5
 
@@ -45,7 +45,7 @@ module Events
     def process_one
       next_message(on_success: -> { stats.increment }) do |raw_msg|
         msg = Message.from_json(raw_msg.data)
-        duration = measure_ms { Events.config.process_wrapper.(msg) { process_message(msg) } }
+        duration = measure_ms { NatsConsumer.config.process_wrapper.(msg) { process_message(msg) } }
         stats.track(raw_msg.subject, msg, duration)
       end
     end
@@ -73,7 +73,7 @@ module Events
     def log_error(raw_msg, error)
       context = { '@consumer': durable_name, '@subject': raw_msg.subject, msg: raw_msg.data }
       logger.error(error, context)
-      Events.config.error_handler.(error, **context)
+      NatsConsumer.config.error_handler.(error, **context)
     end
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Events
+module NatsConsumer
   class QueueEntry
     BACKOFF_PERIOD = 900  # 15 minutes in seconds
     STALE_THRESHOLD = 300 # 5 minutes in seconds
